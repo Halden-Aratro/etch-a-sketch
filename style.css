@@ -1,0 +1,35 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(16, 50px);
+    grid-template-rows: repeat(16, 50px);
+    justify-content: center;
+}
+
+.cell {
+    border: 2px solid black;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+#pageTop {
+    height: 150px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  
+}
+
+#resetButton {
+    height: 50px;
+    width: 200px;
+    background-color: rgb(112, 211, 211);
+    border-radius: 15px;
+    margin-right: 50px;
+    font-size: 24px;
+}
