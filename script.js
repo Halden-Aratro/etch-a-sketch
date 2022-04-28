@@ -1,80 +1,57 @@
-function createArray(number) {
-    let nb = parseInt(number);
-    let arr = [];
+const DEFAULT_SIZE = 16;
+const DEFAULT_COLOR = "yellowgreen"
 
-    if(isNaN(nb)) {
-        nb = 256;
-    } else {nb = nb*nb};
+let gridContainer = document.querySelector('.gridContainer');
 
-    for (let i = 0; i < nb ; i++) {
-        arr.push(i+1);
-    }
-    console.log(arr)
-    return arr;
-}
+function createGrid (size) {
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-function createElements(array) {
-    for (let i = 0; i < array.length; i++) {
-        let sq = document.createElement('div');
-        sq.setAttribute('id', [i]);
+    for (let i = 0; i < size * size; i++) {
+        const sq = document.createElement('div');
         sq.classList.add('cell');
-        container.appendChild(sq);
+        gridContainer.appendChild(sq);
     }
 }
 
-let container = document.querySelector('.container');
-container.setAttribute('id', 'frame');
-
-
-function hoverCell (array) {
-    let hover = document.querySelectorAll('.cell');
-    for (let i = 0; i < array.length; i++) {
-        hover[i].addEventListener("mouseover", (event) => {
-            event.target.style.backgroundColor = "yellowgreen";
-/*             setTimeout( () => {
-                event.target.style.backgroundColor = "";
-            }, 100); */
+function colorCell (size) {
+    let hoverGrid = document.querySelectorAll('.cell');
+    for (let i = 0; i < size * size; i++) {
+        hoverGrid[i].addEventListener("mouseover", (event) => {
+            event.target.style.backgroundColor = DEFAULT_COLOR;
         }, false);
     }
 }
 
-function resetPage() {
+function getUserInput() {
     let resetButton = document.querySelector('#resetButton');
     resetButton.addEventListener('click', (e) => {
-        let input = window.prompt("Enter the number of squares per side you need", "16");
-        if (input >= 100) {
+        let newSize = window.prompt("Enter the number of squares per side you need", "16");
+        if (newSize > 100) {
             alert("Please, chose a number below 100");
         } else {
-            return input;
+            resetPage(newSize);
         }
     })
 }
 
+function resetPage(size) {
+    removeCells();
+    createGrid(size);
+    colorCell(size); 
+}
+
 function removeCells() {
-    const cells = document.querySelector(".container");
-    while (cells.firstChild) {
-        cells.removeChild(cells.lastChild);
+    let grid = document.querySelector(".gridContainer");
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
     }
 }
 
-function reset (input) {
-    let wipeoutCells = removeCells();
-    let array = createArray(input);
-    let squares = createElements(array);
-    let hovering = hoverCell(array); 
+window.onload = () => {
+    createGrid(DEFAULT_SIZE);
+    colorCell(DEFAULT_SIZE);
+    getUserInput();
 }
 
-function main () {
-    let array = createArray();
-    let squares = createElements(array);
-    let hovering = hoverCell(array);
-    let input = resetPage();
-
-    if (input != undefined) {
-        let resetGrid = reset(input)
-    }
-    //let wipeoutGrid = removeCells();
-}
-
-main();
 

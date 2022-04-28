@@ -2,34 +2,69 @@
     box-sizing: border-box;
 }
 
-.container {
-    display: grid;
-    height: 800px;
+body{
+    background-color: #ffebcd1f;
     width: 800px;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(16, 1fr);
+    margin-left: 100px;
+}
+
+#title {
+    font-family: 'Water Brush', cursive;
+    font-size: 60px;
+    font-weight:900;
+    text-align: center;
+    margin: 20px;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.menu {
+    height: 500px;
+    display: flex;
     justify-content: center;
+    flex-direction: column;
+}
+
+button {
+    height: 50px;
+    width: 200px;
+    background-color: rgb(201 255 255);
+    border-color: lightgrey;
+    border-radius: 15px;
+    margin-right: 30px;
+    font-size: 24px;
+    box-shadow: 2px 5px 10px rgb(208 207 207);
+}
+
+.gridContainer {
+    display: grid;
+    height: 500px;
+    width: 500px;
+    box-shadow: 2px 2px 15px rgb(208 207 207);
+
 }
 
 .cell {
-    border: 1px solid black;
     justify-content: center;
     align-items: center;
 }
 
-#pageTop {
-    height: 150px;
+.footer {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    width: inherit;
+    justify-content: space-between;
 }
 
-#resetButton {
-    height: 50px;
-    width: 200px;
-    background-color: rgb(112, 211, 211);
-    border-radius: 15px;
-    margin-right: 50px;
-    font-size: 24px;
+.credits {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: rgb(59, 59, 59);
+
 }
